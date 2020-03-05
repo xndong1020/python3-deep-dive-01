@@ -356,7 +356,7 @@ d: mandatory keyword argument
 e: optional keyword argument, default to True
 ```
 
-##### 7. **kwargs
+#### 7. **kwargs
 ***args** is used to scoop up variable amount of remaining positional arguments
 
 **kwargs is used to scoop up variable amount of remaining keyword arguments
@@ -414,7 +414,7 @@ flush is an optional keyword argument, default value is False
 ```
 
 
-#### 9. Parameter Defaults - Beware!
+#### 8. Parameter Defaults - Beware!
 What happens at runtime:
 1. when a module is loaded, all code in the module is executed immediately
 
