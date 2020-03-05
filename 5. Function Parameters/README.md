@@ -435,8 +435,8 @@ def func(a=10):
     --> the integer object 10 is evaluated/created, and is assigned as the default for a
 ```
 
-This will potentially cause some problem.
-Case 1:
+##### This will potentially cause some problem.
+##### Case 1:
 ```py
 from datetime import datetime
 from time import sleep
@@ -513,3 +513,98 @@ func()  # [1, 2, 3]
 list.append(4)  
 # YOU CAN'T change a immutable tuple, so the default value of list is always the same
 ```
+
+##### Case 2:
+```py
+def shopping(item, amount=1, store=[]):
+    store.append(f"Purchased {amount} of {item}")
+    return store
+
+
+store1 = shopping("Food")
+shopping("Paper", 2, store1)
+print(store1)  # ['Purchased 1 of Food', 'Purchased 2 of Paper']
+
+# we want to create a new store, but actually 2 stores object are refering to the same object
+store2 = shopping("milk", 5)
+print(store2)  # ['Purchased 1 of Food', 'Purchased 2 of Paper', 'Purchased 5 of milk']
+print(store1)  # ['Purchased 1 of Food', 'Purchased 2 of Paper', 'Purchased 5 of milk']
+print(store1 is store2)  # True
+
+"""
+When this module is loaded, def was called, and the parameter store's default value
+is saved into cache, which is a mutation type.
+Later on whenever this function is called, the default value of store parameter is always
+pointing to the same object.
+"""
+```
+
+Solution: again use the pattern we used in case1
+```py
+def shopping(item, amount=1, store=None):
+    store = store or []
+    store.append(f"Purchased {amount} of {item}")
+    return store
+
+
+store1 = shopping("Food")
+shopping("Paper", 2, store1)
+print(store1)  # ['Purchased 1 of Food', 'Purchased 2 of Paper']
+
+# we want to create a new store, but actually 2 stores object are refering to the same object
+store2 = shopping("milk", 5)
+print(store2)  # ['Purchased 5 of milk']
+print(store1)  # ['Purchased 1 of Food', 'Purchased 2 of Paper']
+print(store1 is store2)  # False
+```
+
+##### Case 3
+Sometime it is useful for us, if we want to cache things
+```py
+def factorial(n):
+    if n <= 1:
+        return 1
+    else:
+        print(f"calculating factorial for {n}")
+        return n * factorial(n - 1)
+
+
+print(factorial(5))
+print(factorial(4))
+```
+
+This function works. However every time it needs to start calculating
+from scratch. If we need have a cache to memorize previous calculation 
+it will have better performance
+
+Solution:
+```py
+def factorial(n, cache={}):
+    if n <= 1:
+        return 1
+
+    #  if previous calculation result can be found in cache
+    #  then no need to re-compute, just return
+    if n in cache:
+        return cache[n]
+
+    # if no cache, then compute, and save result in cache
+    print(f"calculating factorial for {n}")
+    cache[n] = n * factorial(n - 1)
+    return cache[n]
+
+
+print(factorial(4))
+print(factorial(5))
+
+
+"""
+calculating factorial for 4
+calculating factorial for 3
+calculating factorial for 2
+24
+calculating factorial for 5
+120
+"""
+```
+The reason why 2 function calls are sharing the same cache, is because when this module is loaded, def keyword saves function, and the cache's default value is saved. So for every function call, they are sharing the same cache default value

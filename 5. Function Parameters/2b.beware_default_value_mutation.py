@@ -26,5 +26,5 @@ def func(list=list):
 
 func()  # [1, 2, 3]
 
-list.append(4)  
+list.append(4)
 # YOU CAN'T change a immutable tuple, so the default value of list is always the same
