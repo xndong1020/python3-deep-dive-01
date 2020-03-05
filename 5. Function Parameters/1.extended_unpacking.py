@@ -21,13 +21,13 @@ print(f)  # [2, 3, 4, 5, 6]
 l = [1, 2, [3, 4]]
 g, h, (i, j) = l
 
-print(g) # 1
-print(h) # 2
-print(i) # 3
-print(j) # 4
+print(g)  # 1
+print(h)  # 2
+print(i)  # 3
+print(j)  # 4
 
-k, *l, (m, *n) = [1, 2, 3, 'python']
-print(k) # 1
-print(l) # [2, 3]
-print(m) # p
-print(n) # ['y', 't', 'h', 'o', 'n']
+k, *l, (m, *n) = [1, 2, 3, "python"]
+print(k)  # 1
+print(l)  # [2, 3]
+print(m)  # p
+print(n)  # ['y', 't', 'h', 'o', 'n']
