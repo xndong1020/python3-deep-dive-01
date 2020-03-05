@@ -106,7 +106,7 @@ my_func(1, b=2, c=3)
 my_func(1, c=3, b=2) # position of keyword args does NOT matter
 ```
 
-##### 3. Unpacking Iterables
+#### 3. Unpacking Iterables
 A side note on Tuple
 (1, 2, 3) is a tuple, but actually **what defines a tuple in Python is not (), but ,**
 1, 2, 3 is also a tuple, the () are just used to make the tuple clearer
