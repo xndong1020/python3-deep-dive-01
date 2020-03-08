@@ -422,7 +422,7 @@ contains(s, val)     # if val exists in a sequence, equivalent to 'in' operator 
 countOf(s, val)      # how many times does val occurs in a sequence
 getitem(s, i)        # get item by index from a sequence, like s[i]
 setitem(s, i, val)   # set s[i] = val
-delitem(s, i)        # delete s[i]
+delitem(s, i)        # del s[i]
 
 ##### Items Getters
 The `itemgetter` function returns a callable
