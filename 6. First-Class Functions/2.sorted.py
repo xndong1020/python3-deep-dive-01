@@ -39,7 +39,7 @@ for key in sorted_items_amount:
 students = ["Cleese", "Idle", "Palin", "Chapman", "Gilliam", "Jones"]
 students_sorted = sorted(students, key=lambda name: name[-1])
 #  ['Cleese', 'Idle', 'Gilliam', 'Palin', 'Chapman', 'Jones']
-print(students_sorted) 
+print(students_sorted)
 
 """
 Why 'Palin' appears before 'Chapman', but the last char of their name are both 'n'?
